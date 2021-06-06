@@ -7,7 +7,7 @@ Ideally this will eventually be done using [Freecad's](https://www.freecadweb.or
 
 To benchmark the approach, I'm use the RAMbone slingshot design by Jörg Sprave as it is an organic shape and useful afterwards.
 
-
+<img width="964" alt="STL in blender" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/blender.png">
 
 ## Approach
 The [CNC](https://miscpro.com/product/moot_one-desktop-cnc-machine/) my machine is based on is 3-Axis, restricting cutting to occur on X (left/right), Y (forward/back) or Z (up/down); So the model will need to be split into layers to allow workpiece flipping or rejoining of layers.
@@ -42,6 +42,8 @@ $ slic3r --rotate-x 180 <model-lower-lower.stl>
 
 A width of 2048 pixels resulted in good enough resolution.
 
+<img width="964" alt="Top slice as depthmap" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/top.png">
+
 #### Alternatives for depth map
 * [blender](https://www.blender.org)
 
@@ -58,6 +60,7 @@ Hold down tags were then created by using brush with a black-grey-black gradient
 
 As my model slice depths were slightly shallower than my plywood thickness, this wasn't strictly as there was supporting material I sanded back later. It does however give the options to have the cut complete all the way through and remove this step.
 
+<img width="964" alt="Depthmap profiled with tags" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/top-b.png">
 
 ### Depth map to gcode
 [image-to-gcode](http://www.linuxcnc.org/docs/2.4/html/gui_image-to-gcode.html) from [linuxcnc](http://linuxcnc.org/) worked well enough here. 
@@ -73,11 +76,15 @@ and for a nice finish
 * `Tolerance` 0.001
 * `Stepover` 3
 
+<img width="964" alt="Image2gcode" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/image2gcode.png">
+
 #### alternatives to image-to-gcode
 * [robomechs/image-to-gcode](https://github.com/robomechs/image-to-gcode) - Same as linuxCNC1s image-to-gcode with tool shape options for tapered bits
 
 ### G-Code tidy up and preview
 All of my gcode [CAM](https://en.wikipedia.org/wiki/Computer-aided_manufacturing) tidy-up and prep is completed with [bCNC](https://github.com/vlachoudis/bCNC) 
+
+<img width="964" alt="bCNC" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/bCNC.png">
 
 Previewing toolpaths is done with [Camotics](https://camotics.org/)
 
@@ -88,4 +95,5 @@ This seems to produce a nice result however machinine time is quite lengthy as i
 Most tools seem to be designed for debian based systems and python2, so much fun was had transposing to fedora and python3. For times where I just wanted to use the tool, building against the native operating system via [containers](https://en.wikipedia.org/wiki/List_of_Linux_containers) was the go.
 
 
-
+<img width="964" alt="Result" src="https://github.com/jelsdon/stl-to-cnc-workflow/blob/main/images/finished_rambone.jpg">
+_note: I added a hand-cut mild steel layer for extra strength so no one needs to eat plywood if they ever used it_
